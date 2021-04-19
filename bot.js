@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 
-const fs = require('fs').promises;
+const fs = require('fs').promises
 const select = require ('puppeteer-select')
 const puppeteer = require('puppeteer')
 
@@ -18,27 +18,6 @@ const chromeOptions = {
 };
 
 const http = require('http')
-
-process
-  .on('SIGTERM', shutdown('SIGTERM'))
-  .on('SIGINT', shutdown('SIGINT'))
-  .on('uncaughtException', shutdown('uncaughtException'))
-
-  setInterval(console.log.bind(console, 'tick'), 1000)
-http.createServer((req, res) => res.end('hi'))
-  .listen(process.env.PORT || 3000, () => console.log('Listening'))
-
-function shutdown(signal) {
-  return (err) => {
-    console.log(`${ signal }...`)
-    if (err) console.error(err.stack || err)
-    setTimeout(() => {
-      console.log('...waited 5s, exiting.')
-      process.exit(err ? 1 : 0);
-    }, 5000).unref()
-  }
-}
-
 
 /**
  * Scroll the page. We need to scroll in order to allow to click on element.Element is accessible only if it
@@ -154,7 +133,7 @@ const duringToPrint = (timeInMs, offsetInMs = 0) => {
     if ((Date.now() - lastCallTs) > ONE_HOUR_MS) {
 
       let loopError = false
-      const browser = await puppeteer.launch(chromeOptions)
+      const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
       const page = await browser.newPage()
       await page.setViewport({ width: 1866, height: 768})
       
@@ -245,3 +224,23 @@ const duringToPrint = (timeInMs, offsetInMs = 0) => {
 
   }
 })()
+
+process
+  .on('SIGTERM', shutdown('SIGTERM'))
+  .on('SIGINT', shutdown('SIGINT'))
+  .on('uncaughtException', shutdown('uncaughtException'))
+
+  setInterval(console.log.bind(console, 'tick'), 1000)
+http.createServer((req, res) => res.end('hi'))
+  .listen(process.env.PORT || 3000, () => console.log('Listening'))
+
+function shutdown(signal) {
+  return (err) => {
+    console.log(`${ signal }...`)
+    if (err) console.error(err.stack || err)
+    setTimeout(() => {
+      console.log('...waited 5s, exiting.')
+      process.exit(err ? 1 : 0);
+    }, 5000).unref()
+  }
+}
