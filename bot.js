@@ -23,13 +23,11 @@ const chromeOptions = {
   ],
 };
 
-app.set('port', (process.env.PORT || 5000))
+const port = process.env.PORT || 3000;
 
 app.get('/', function (req, res){
   res.send('🦾 ----------------- BOT IS STARTING ----------------- 🦾')
 })
-
-const port = 3000
 
 app.listen(port, () => {
   console.log(`BOT IS RUNINNG`)
