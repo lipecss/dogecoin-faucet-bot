@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "node bot.js"
+    "dev": "node bot.js",
+    "start": "node bot.js"
   },
   "license": "MIT",
   "dependencies": {
