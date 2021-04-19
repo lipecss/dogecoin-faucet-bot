@@ -1,8 +1,5 @@
 require('dotenv').config()
 
-
-const express = require('express')
-const app = express()
 const fs = require('fs').promises;
 const select = require ('puppeteer-select')
 const puppeteer = require('puppeteer')
@@ -22,16 +19,6 @@ const chromeOptions = {
     "--no-zygote"
   ],
 };
-
-const port = process.env.PORT || 3000;
-
-app.get('/', function (req, res){
-  res.send('🦾 ----------------- BOT IS STARTING ----------------- 🦾')
-})
-
-app.listen(port, () => {
-  console.log(`BOT IS RUNINNG`)
-})
 
 /**
  * Scroll the page. We need to scroll in order to allow to click on element.Element is accessible only if it
