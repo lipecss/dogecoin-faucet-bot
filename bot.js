@@ -14,6 +14,7 @@ const chromeOptions = {
   args: [
     "--incognito",
     "--no-sandbox",
+    "--disable-setuid-sandbox",
     "--single-process",
     "--no-zygote"
   ],
