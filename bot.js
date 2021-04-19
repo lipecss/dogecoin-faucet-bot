@@ -1,8 +1,6 @@
 require('dotenv').config()
 
 
-const express = require('express')
-const app = express()
 const fs = require('fs').promises;
 const select = require ('puppeteer-select')
 const puppeteer = require('puppeteer')
@@ -19,13 +17,28 @@ const chromeOptions = {
   ],
 };
 
-const port = process.env.PORT || 3000;
+const http = require('http')
 
-app.get('/', function (req, res){
-  res.send('🦾 ----------------- BOT IS STARTING ----------------- 🦾')
-})
+process
+  .on('SIGTERM', shutdown('SIGTERM'))
+  .on('SIGINT', shutdown('SIGINT'))
+  .on('uncaughtException', shutdown('uncaughtException'))
 
-app.listen(process.env.PORT, '0.0.0.0')
+  setInterval(console.log.bind(console, 'tick'), 1000)
+http.createServer((req, res) => res.end('hi'))
+  .listen(process.env.PORT || 3000, () => console.log('Listening'))
+
+function shutdown(signal) {
+  return (err) => {
+    console.log(`${ signal }...`)
+    if (err) console.error(err.stack || err)
+    setTimeout(() => {
+      console.log('...waited 5s, exiting.')
+      process.exit(err ? 1 : 0);
+    }, 5000).unref()
+  }
+}
+
 
 /**
  * Scroll the page. We need to scroll in order to allow to click on element.Element is accessible only if it
