@@ -15,11 +15,7 @@ const chromeOptions = {
   headless: true,
   defaultViewport: null,
   args: [
-    "--incognito",
-    "--no-sandbox",
-    "--disable-setuid-sandbox",
-    "--single-process",
-    "--no-zygote"
+    "--no-sandbox"
   ],
 };
 
