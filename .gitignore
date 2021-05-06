@@ -1,4 +1,5 @@
 /node_modules
 npm-debug.log
+backup.js
 .DS_Store
 /*.env

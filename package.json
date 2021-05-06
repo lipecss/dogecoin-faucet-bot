@@ -2,8 +2,10 @@
   "name": "dogecoin-faucet-bot",
   "version": "1.0.0",
   "main": "index.js",
+  "description": "Earn faucet DOGE coin automatically",
+  "author": "Felipecss",
   "scripts": {
-    "dev": "node bot.js",
+    "dev": "nodemon bot.js",
     "start": "node bot.js"
   },
   "license": "MIT",
@@ -13,5 +15,8 @@
     "prompt": "^1.1.0",
     "puppeteer": "^8.0.0",
     "puppeteer-select": "^1.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
